@@ -28,8 +28,13 @@ export class Yarn2Proxy extends JsPackageManager {
     return `yarn ${command}`;
   }
 
-  runPackageCommand(command: string, args: string[], cwd?: string): string {
-    return this.executeCommand(`yarn`, [command, ...args], undefined, cwd);
+  runPackageCommand(
+    command: string,
+    args: string[],
+    cwd?: string,
+    stdio?: 'pipe' | 'inherit'
+  ): string {
+    return this.executeCommand(`yarn`, [command, ...args], stdio, cwd);
   }
 
   public findInstallations(pattern: string[]) {

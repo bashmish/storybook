@@ -47,8 +47,13 @@ export class NPMProxy extends JsPackageManager {
     return this.installArgs;
   }
 
-  public runPackageCommand(command: string, args: string[], cwd?: string): string {
-    return this.executeCommand('npm', ['exec', '--', command, ...args], undefined, cwd);
+  public runPackageCommand(
+    command: string,
+    args: string[],
+    cwd?: string,
+    stdio?: 'pipe' | 'inherit'
+  ): string {
+    return this.executeCommand('npm', ['exec', '--', command, ...args], stdio, cwd);
   }
 
   public findInstallations() {

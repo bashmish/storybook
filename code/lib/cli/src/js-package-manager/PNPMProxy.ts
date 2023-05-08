@@ -61,8 +61,13 @@ export class PNPMProxy extends JsPackageManager {
     return this.installArgs;
   }
 
-  runPackageCommand(command: string, args: string[], cwd?: string): string {
-    return this.executeCommand(`pnpm`, ['exec', command, ...args], undefined, cwd);
+  runPackageCommand(
+    command: string,
+    args: string[],
+    cwd?: string,
+    stdio?: 'pipe' | 'inherit'
+  ): string {
+    return this.executeCommand(`pnpm`, ['exec', command, ...args], stdio, cwd);
   }
 
   public findInstallations(pattern: string[]) {
